@@ -8,7 +8,7 @@ import {
   Route,
   Routes
 } from 'react-router-dom';
-import InputModal from './scenes/InputModal';
+import MainView from './scenes/MainView';
 function App() {
   return (
     <div>
@@ -23,7 +23,7 @@ function RoutingComponent() {
     <Router>
       <div>
         <Routes>
-          <Route path='/scenes/InputModal' element={<InputModal />} />
+          <Route path='/' element={<MainView />} />
         </Routes>
       </div>
     </Router>

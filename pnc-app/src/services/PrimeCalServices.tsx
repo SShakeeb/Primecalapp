@@ -1,27 +1,34 @@
 import axios from "axios";
+import { APIResult, SumResponse, CheckPrimeResponse } from "../types";
 const BASE_URL = 'http://localhost:9090/';
 const SUM_ENDPOINT = BASE_URL + 'sumandcheck?numbers=';
 const PRIME_CHECK_ENDPOINT = BASE_URL + 'checkprime?number=';
 
-const getSum = async (Numbers: string) =>{
+async function getSum(Numbers: string): Promise<APIResult<SumResponse>> {
     try {
-        const sum = await axios.get(
+        const {data} = await axios.get(
             SUM_ENDPOINT + Numbers
         );
-        return sum;
-    } catch (err) {
-        console.log("get Sum error:", err)
+        return {
+            data: data,
+            error: null,
+        };
+    } catch (error) {
+        return {data: null, error: null} // set error null just for time being needs to display error messages 
+        
     }
 }
 
-const getPrimeCheck = async (Number: number) =>{
+async function getPrimeCheck(Number: number): Promise<APIResult<CheckPrimeResponse>> {
     try {
-        const checkPrime = await axios.get(
+        const {data} = await axios.get(
             PRIME_CHECK_ENDPOINT + Number
         );
-        return checkPrime;
-    } catch (err) {
-        console.log("get PrimeCheck error:", err)
+        return {
+            data: data,
+            error: null,
+        };
+    } catch (error) {return {data: null, error: null}
     }
 }
 
