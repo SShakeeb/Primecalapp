@@ -32,7 +32,7 @@ async function getPrimeCheck(Number: number): Promise<APIResult<CheckPrimeRespon
     }
 }
 
-export {
+export default {
     getSum,
     getPrimeCheck,
 }

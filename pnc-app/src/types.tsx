@@ -10,7 +10,7 @@ export type APIResult<T = null> =
 export type SumResponse = Readonly<{
     result: number;
     isPrime: boolean;
-}>;
+}> | null;
 export type CheckPrimeResponse = Readonly<{
     isPrime: boolean;
-}>;
+}> | null;
