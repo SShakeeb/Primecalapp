@@ -5,4 +5,8 @@ APP is build using React TypeScript and Material UI.
 
 # To Start service
 cd pnc-app
-yarn start
+npm start
+
+# To Test service
+cd pnc-app
+npm test
