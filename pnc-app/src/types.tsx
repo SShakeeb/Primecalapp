@@ -7,10 +7,16 @@ export type APIResult<T = null> =
       data: null;
       error: { message: string };
     }>;
-export type SumResponse = Readonly<{
-    result: number;
+
+export type APIResponse = Readonly<{
+    result?: number;
     isPrime: boolean;
 }> | null;
-export type CheckPrimeResponse = Readonly<{
+
+export type OutputModal = Readonly<{
+    result?: number;
     isPrime: boolean;
-}> | null;
+    show: boolean;
+    handleClose: Function;
+  }>;
+  

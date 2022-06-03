@@ -1,30 +1,30 @@
-import { SumResponse, CheckPrimeResponse } from "../types";
-import PrimeCalServices from "../services/PrimeCalServices";
 import { useState } from "react";
+import { APIResponse } from "../types";
+import PrimeCalServices from "../services/PrimeCalServices";
 
 const usePrimeCheck = (): Readonly<{
-    getSum: (Numbers: string) => Promise<SumResponse>;
-    getPrime: (Number: number) => Promise<CheckPrimeResponse>;
+    getSum: (Numbers: string) => Promise<APIResponse>;
+    getPrime: (Number: number) => Promise<APIResponse>;
+    resultRes: Readonly<APIResponse> | undefined;
 }> => {
-    const [sumResult,setSumResult] = useState<SumResponse | null>(null);
-    const [primeResult,setPrimeResult] = useState<CheckPrimeResponse | null>(null);
-    const getSum = async (Numbers: string): Promise<SumResponse> => {
+    const [resultRes,setResultRes] = useState<APIResponse | null>(null);
+    const getSum = async (Numbers: string): Promise<APIResponse> => {
         const { data, error} = await PrimeCalServices.getSum(Numbers);
         if (!data|| error) {
             console.log(error);
           }
-        setSumResult(data); 
-        return sumResult;
+        setResultRes(data); 
+        return resultRes;
     }
-    const getPrime = async (Number: number): Promise<CheckPrimeResponse> => {
+    const getPrime = async (Number: number): Promise<APIResponse> => {
         const { data, error} = await PrimeCalServices.getPrimeCheck(Number);
         if (!data|| error) {
             console.log(error);
           }
-        setPrimeResult(data);
-        return primeResult;
+        setResultRes(data);
+        return resultRes;
     }
-    return { getSum, getPrime };
+    return { resultRes, getSum, getPrime };
 }
 
 export default usePrimeCheck;
