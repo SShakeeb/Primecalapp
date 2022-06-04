@@ -11,7 +11,7 @@ const usePrimeCheck = (): Readonly<{
     const getSum = async (Numbers: string): Promise<APIResponse> => {
         const { data, error} = await PrimeCalServices.getSum(Numbers);
         if (!data|| error) {
-            console.log(error);
+            alert(error?.message);
           }
         setResultRes(data); 
         return resultRes;
@@ -19,7 +19,7 @@ const usePrimeCheck = (): Readonly<{
     const getPrime = async (Number: number): Promise<APIResponse> => {
         const { data, error} = await PrimeCalServices.getPrimeCheck(Number);
         if (!data|| error) {
-            console.log(error);
+            alert(error?.message);
           }
         setResultRes(data);
         return resultRes;

@@ -1,12 +1,7 @@
-export type APIResult<T = null> =
-  | Readonly<{
-      data: T | null;
-      error: null;
-    }>
-  | Readonly<{
-      data: null;
-      error: { message: string };
-    }>;
+export type APIResult<T = null, U = Record<string, unknown>> = Readonly<{
+    data: T | null;
+    error: ({ message: string; status?: number | null } & { [k in keyof U]: U[k] }) | null;
+  }>;
 
 export type APIResponse = Readonly<{
     result?: number;
@@ -19,4 +14,3 @@ export type OutputModal = Readonly<{
     show: boolean;
     handleClose: Function;
   }>;
-  
