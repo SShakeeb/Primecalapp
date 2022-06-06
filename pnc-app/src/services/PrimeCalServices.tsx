@@ -1,5 +1,6 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { APIResult, APIResponse } from "../types";
+import { getErrorMessage } from "./common";
 const BASE_URL = 'http://localhost:9090/';
 const SUM_ENDPOINT = BASE_URL + 'sumandcheck?numbers=';
 const PRIME_CHECK_ENDPOINT = BASE_URL + 'checkprime?number=';
@@ -14,7 +15,8 @@ async function getSum(Numbers: string): Promise<APIResult<APIResponse>> {
             error: null,
         };
     } catch (error) {
-        return {data: null, error: null} // set error null just for time being needs to display error messages 
+        const error_TC = error as AxiosError // Type Casting
+        return {data: null, error: { message:  getErrorMessage(error_TC)}} 
         
     }
 }
@@ -28,7 +30,9 @@ async function getPrimeCheck(Number: number): Promise<APIResult<APIResponse>> {
             data: data,
             error: null,
         };
-    } catch (error) {return {data: null, error: null}
+    } catch (error) {
+        const error_TC = error as AxiosError // Type Casting
+        return {data: null, error: { message:  getErrorMessage(error_TC)}}
     }
 }
 
